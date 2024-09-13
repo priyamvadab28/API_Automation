@@ -1,0 +1,62 @@
+group 'Restful_brooker'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    restAssuredVersion = '5.3.0'
+    jackson_version = '2.9.0'
+    spring_boot_version = '2.2.6.RELEASE'
+    junit_utils_version = '5.0.2-SNAPSHOT'
+    slf4jVersion='2.0.5'
+}
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+//    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation 'org.springframework.boot:spring-boot-starter:2.7.13' // Or the latest version compatible with Java 1.8
+
+
+   // implementation("org.springframework.boot:spring-boot-starter-web:${spring_boot_version}"){
+     //   exclude group: 'commons-logging', module: 'commons-logging'
+    //}
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.11'
+
+    implementation(
+            "org.projectlombok:lombok:+",
+            "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "io.rest-assured:json-schema-validator:$restAssuredVersion",
+            "org.aeonbits.owner:owner:1.0.12",
+            'com.github.javafaker:javafaker:1.0.2'
+
+    )
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.9.2",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+
+            //"org.junit.jupiter:junit-jupiter:5.9.2",
+
+    )
+
+    testImplementation 'junit:junit:4.4'
+
+
+    //testRunTimeOnly "org.junit.platform:junit-platform-launcher:1.8.2"
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.29'
+
+}
