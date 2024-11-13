@@ -6,6 +6,8 @@ import com.automation.api.model.BookingResponseModel;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,7 +21,7 @@ public class BookingTest extends BaseTest {
     String currentDate = sdfDate.format(new Date());
 
     @Test
-    public void testCreateTokenReturnsNotNull(){
+    public void testCreateTokenNotNull(){
         AuthRequestModel authRequestModel = new AuthRequestModel(config.username(), config.password());
 
 
@@ -35,7 +37,9 @@ public class BookingTest extends BaseTest {
     }
 
     @Test
-    public void testGetBookingIdsByNameReturns200() {
+    @ParameterizedTest
+    @ValueSource({"John", "Smith"},{})
+    public void testGetBookingIdsByNameReturns200(String firstname, String lastname) {
         Response response = bookingService.getBookingIdsByName("John", "Smith");
 
         Assert.assertEquals(response.statusCode(), SC_OK);
@@ -70,6 +74,8 @@ public class BookingTest extends BaseTest {
                         .getBookingId();
 
         bookingRequestModel.setTotalPrice(testData.getTotalPrice());
+
+
 
         Response response = bookingService.updateBooking(bookingRequestModel, token, id);
 

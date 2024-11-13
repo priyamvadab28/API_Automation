@@ -8,6 +8,10 @@ import com.automation.api.client.BookingService;
 import com.automation.api.client.BookingServiceImpl;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
+
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class BaseTest {
 
@@ -22,6 +26,7 @@ public class BaseTest {
     void CreateToken() {
         AuthRequestModel authRequestModel = new AuthRequestModel(config.username(), config.password());
         token = authApi.createToken(authRequestModel);
+        System.out.println(token);
 
     }
 

@@ -65,7 +65,7 @@ public class BookingServiceImpl implements BookingService {
                 .contentType(JSON)
                 .body(bookingRequestModel)
                 .when()
-                .put(APIEndpoint.BOOKING_ENDPOINT.get()+ id);
+                .put(APIEndpoint.BOOKING_ENDPOINT.get() + id);
     }
 
 
